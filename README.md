@@ -21,22 +21,27 @@ TrailFlow focuses on clarity, maintainability, and scalability, making it suitab
 <h2>Project Structure</h2>
 <pre><code>
 TrailFlow/
-TrailFlow/
 ├── data/
-│   └── raw/                         # Raw, unprocessed input datasets
+│   └── raw/                         # Raw, unprocessed clinical trial datasets
 │
 ├── ingestion/
 │   ├── loader.py                    # Excel / file loading logic
 │   ├── domain_mapper.py             # Maps files to clinical domains
 │   ├── cleaner.py                   # Generic & domain-specific data cleaning
-│   ├── pipeline.py                  # Orchestrates ingestion steps
+│   ├── pipeline.py                  # Orchestrates ingestion workflow
 │   └── test_loader.py               # Unit tests for loader logic
 │
-├── .gitignore                       # Files and directories ignored by Git
-├── requirements.txt                 # Python dependencies
+├── issue_model/
+│   ├── issue_detector.py            # Core issue detection engine
+│   ├── rules.py                     # Rule-based issue detection logic
+│   ├── features.py                  # Feature extraction for issue signals
+│   ├── schemas.py                   # Standardized issue output schemas
+│   └── __init__.py
+│
 ├── run_pipeline.py                  # Main pipeline entry point
+├── requirements.txt                 # Python dependencies
+├── .gitignore                       # Git ignore rules
 └── README.md                        # Project documentation
-              # Project documentation
 </code></pre>
 
 ## How It Works
