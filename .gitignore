@@ -1,0 +1,92 @@
+# Data folders
+data/raw/
+data/processed/
+
+# CSV files
+*.csv
+
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual Environments
+venv/
+.env/
+.env.*
+.venv/
+ENV/
+env/
+
+# Python build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# Jupyter / ML
+# =========================
+.ipynb_checkpoints/
+*.h5
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.joblib
+
+# =========================
+# Logs & runtime
+# =========================
+*.log
+logs/
+tmp/
+.cache/
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Secrets & Credentials
+# =========================
+.env
+.env.local
+.env.dev
+.env.prod
+*.key
+*.pem
+*.secret
+
+# =========================
+# Databases
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Test / Coverage
+# =========================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# Node (
