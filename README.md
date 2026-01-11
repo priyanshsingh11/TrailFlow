@@ -37,10 +37,18 @@ TrailFlow/
 │   ├── features.py                  # Feature extraction for issue signals
 │   ├── schemas.py                   # Standardized issue output schemas
 │   └── __init__.py
-│
+│── agents/
+│   ├── insight_agent.py              # Converts detected issues into insights
+│   ├── recommendation_agent.py      # Generates action items & mitigation steps
+│   ├── summarization_agent.py        # High-level study summaries
+│   └── __init__.py
+|
 ├── run_pipeline.py                  # Main pipeline entry point
 ├── requirements.txt                 # Python dependencies
 ├── .gitignore                       # Git ignore rules
+├── run_ai_pipeline.py               # Runs full AI pipeline (issues → insights → actions)
+├── test_loader.py
+├── run_issue_pipeline.py
 └── README.md                        # Project documentation
 </code></pre>
 
