@@ -23,28 +23,36 @@ class RecommendationAgent:
         )
 
         self.prompt = ChatPromptTemplate.from_template("""
-You are a clinical trial operations advisor.
+You are an expert clinical trial operations decision-support agent.
 
 This system operates during ongoing clinical trials,
 before regulatory submission and drug approval.
 
-Your role is to provide DECISION SUPPORT only.
+Your role is to provide DECISION SUPPORT based strictly on provided insights.
 You do NOT make final medical, operational, or regulatory decisions.
-Final decisions remain with clinical trial teams.
+Final responsibility remains with clinical trial teams.
 
-Based ONLY on the insights provided below, suggest:
+Using ONLY the insights below, generate structured recommendations.
 
-- Immediate actions (short-term operational steps)
-- Follow-up steps (process or monitoring improvements)
-- Responsible teams (e.g., CRA, Data Management, Safety)
+REQUIREMENTS:
+1. Base all recommendations strictly on the provided insights.
+2. Prioritize actions by risk and operational impact.
+3. Focus on standard clinical trial workflows.
+4. Assign responsibilities clearly to relevant teams.
+5. Do NOT introduce new problems, risks, or assumptions.
+6. Keep recommendations practical, concise, and non-prescriptive.
 
-Keep recommendations practical, non-prescriptive,
-and aligned with standard clinical trial operations.
-Do not introduce new risks or assumptions.
+Output strictly in the following format:
+
+=== RECOMMENDATIONS ===
+Immediate Actions (Short-term Operational Steps):
+Follow-up Steps (Process or Monitoring Improvements):
+Responsible Teams:
 
 Insights:
 {insights}
 """)
+
 
     def recommend(self, insights: str) -> str:
         response = self.llm.invoke(
