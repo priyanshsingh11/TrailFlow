@@ -1,5 +1,82 @@
 # TrailFlow
 
+## System Design
+```mermaid
+flowchart TB
+
+    %% =========================
+    %% DATA SOURCES
+    %% =========================
+    subgraph DS["Clinical Trial Data Sources (Ongoing Trials)"]
+        EDC["EDC Metrics (Excel)"]
+        SAE["Safety & SAE Reports"]
+        LAB["Laboratory Reports"]
+        DQ["Missing Data & Inactive Forms"]
+        COD["Medical Coding (MedDRA / WHODD)"]
+        OPS["Operational & Visit Trackers"]
+    end
+
+    %% =========================
+    %% INGESTION & CLEANING
+    %% =========================
+    subgraph ING["Step 1: Data Ingestion & Cleaning (Deterministic)"]
+        LDR["Excel Loader"]
+        MAP["Domain Mapper"]
+        CLN["Data Cleaner & Normalizer"]
+        RAW["Unified Clean Data (CSV)"]
+    end
+
+    %% =========================
+    %% ISSUE DETECTION
+    %% =========================
+    subgraph ISS["Step 2: Issue Detection (Rule-Based)"]
+        ROUTE["Issue Routing Pipeline"]
+        RULES["Domain-Specific Rules"]
+        ISSUES["Structured Issues Table"]
+    end
+
+    %% =========================
+    %% AGENTIC AI LAYER
+    %% =========================
+    subgraph AI["Step 3: Agentic AI (Reasoning Only)"]
+        INSIGHT["Insight Agent\n(Explains Patterns)"]
+        RECOMMEND["Recommendation Agent\n(Suggests Actions)"]
+    end
+
+    %% =========================
+    %% APPLICATION LAYER
+    %% =========================
+    subgraph APP["Step 4: Application Layer"]
+        API["FastAPI Backend"]
+        UI["Streamlit Dashboard & AI Assistant"]
+    end
+
+    %% =========================
+    %% DATA FLOW
+    %% =========================
+    EDC --> LDR
+    SAE --> LDR
+    LAB --> LDR
+    DQ --> LDR
+    COD --> LDR
+    OPS --> LDR
+
+    LDR --> MAP
+    MAP --> CLN
+    CLN --> RAW
+
+    RAW --> ROUTE
+    ROUTE --> RULES
+    RULES --> ISSUES
+
+    ISSUES --> INSIGHT
+    INSIGHT --> RECOMMEND
+
+    INSIGHT --> API
+    RECOMMEND --> API
+    API --> UI
+```
+
 ## Overview
 
 TrailFlow is a Python-based data ingestion and processing pipeline designed to load, organize, and process structured datasets in a clean and reproducible way.  
