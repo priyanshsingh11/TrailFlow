@@ -70,9 +70,6 @@ flowchart TB
     ISSUES --> INSIGHT
     INSIGHT --> RECOMMEND
 
-    INSIGHT --> API
-    RECOMMEND --> API
-    API --> UI
 ```
 
 ## Overview
