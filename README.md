@@ -1,6 +1,4 @@
 # TrailFlow
-
-## System Design
 ```mermaid
 flowchart TB
 
