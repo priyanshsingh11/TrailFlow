@@ -166,19 +166,38 @@ Run the pipeline from the project root:
 ```bash
 python run_pipeline.py
 ```
-This script orchestrates the complete workflow and serves as the central execution point for the project.
 
+Run the full AI pipeline for the project:
+```bash
+python run_ai_pipeline.py
+```
+
+This script orchestrates the complete workflow and serves as the central execution point for the project.
 ## Design Principles
 
-- Simplicity over unnecessary abstraction  
-- Clear separation between data, logic, and execution  
-- Easy testing and debugging  
-- Designed for future extensibility  
+- Deterministic logic before AI reasoning  
+- No black-box decisions  
+- Fully traceable issue origins  
+- Modular and testable components  
+- Built for real-world clinical workflows  
+
+---
+
+## Current Status
+
+- Ingestion pipeline implemented  
+- Issue detection engine operational  
+- Agentic AI layer integrated  
+- End-to-end execution supported  
+
+---
 
 ## Future Enhancements
 
-- Add schema validation and data quality checks  
-- Introduce logging and monitoring  
-- Support configuration-driven pipelines  
-- Extend with transformation and analytics stages  
+- Configuration-driven rules  
+- Continuous ingestion support  
+- Monitoring and alerting  
+- Cross-study intelligence  
+- Cloud-native deployment  
+
  
