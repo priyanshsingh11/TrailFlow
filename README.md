@@ -25,20 +25,36 @@ flowchart TB
     end
 
     %% =========================
-    %% ISSUE DETECTION
+    %% ISSUE DETECTION (CORE BRAIN)
     %% =========================
-    subgraph ISS["Step 2: Issue Detection (Rule-Based)"]
+    subgraph ISS["Step 2: Issue Detection Engine (System Brain)"]
         ROUTE["Issue Routing Pipeline"]
-        RULES["Domain-Specific Rules"]
+        RULES["Domain-Specific Issue Rules"]
         ISSUES["Structured Issues Table"]
     end
 
     %% =========================
-    %% AGENTIC AI LAYER
+    %% BACKEND SERVICES
     %% =========================
-    subgraph AI["Step 3: Agentic AI (Reasoning Only)"]
+    subgraph API["Backend Services Layer"]
+        FASTAPI["FastAPI Service"]
+        STORE["Issue & Insight Storage"]
+    end
+
+    %% =========================
+    %% AGENTIC AI (FEEDBACK ONLY)
+    %% =========================
+    subgraph AI["Step 3: Agentic AI (Reasoning & Feedback Only)"]
         INSIGHT["Insight Agent\n(Explains Patterns)"]
         RECOMMEND["Recommendation Agent\n(Suggests Actions)"]
+    end
+
+    %% =========================
+    %% APPLICATION LAYER
+    %% =========================
+    subgraph UI["Application Layer"]
+        DASH["Streamlit Dashboard"]
+        CHAT["AI Assistant View"]
     end
 
     %% =========================
@@ -59,8 +75,15 @@ flowchart TB
     ROUTE --> RULES
     RULES --> ISSUES
 
-    ISSUES --> INSIGHT
+    ISSUES --> FASTAPI
+    FASTAPI --> STORE
+
+    STORE --> INSIGHT
     INSIGHT --> RECOMMEND
+
+    RECOMMEND --> FASTAPI
+    FASTAPI --> DASH
+    FASTAPI --> CHAT
 
 ```
 
