@@ -1,3 +1,5 @@
+# /ONLY FOR THE TESTING PURPOSES/------>
+
 from ingestion.loader import load_excel
 
 df = load_excel(
