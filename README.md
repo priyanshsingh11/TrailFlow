@@ -1,20 +1,120 @@
 # TrailFlow
+```mermaid
+flowchart TB
+
+    %% =========================
+    %% DATA SOURCES
+    %% =========================
+    subgraph DS["Clinical Trial Data Sources (Ongoing Trials)"]
+        EDC["EDC Metrics (Excel)"]
+        SAE["Safety & SAE Reports"]
+        LAB["Laboratory Reports"]
+        DQ["Missing Data & Inactive Forms"]
+        COD["Medical Coding (MedDRA / WHODD)"]
+        OPS["Operational & Visit Trackers"]
+    end
+
+    %% =========================
+    %% INGESTION & CLEANING
+    %% =========================
+    subgraph ING["Step 1: Data Ingestion & Cleaning (Deterministic)"]
+        LDR["Excel Loader"]
+        MAP["Domain Mapper"]
+        CLN["Data Cleaner & Normalizer"]
+        RAW["Unified Clean Data (CSV)"]
+    end
+
+    %% =========================
+    %% ISSUE DETECTION
+    %% =========================
+    subgraph ISS["Step 2: Issue Detection (Rule-Based)"]
+        ROUTE["Issue Routing Pipeline"]
+        RULES["Domain-Specific Rules"]
+        ISSUES["Structured Issues Table"]
+    end
+
+    %% =========================
+    %% AGENTIC AI LAYER
+    %% =========================
+    subgraph AI["Step 3: Agentic AI (Reasoning Only)"]
+        INSIGHT["Insight Agent\n(Explains Patterns)"]
+        RECOMMEND["Recommendation Agent\n(Suggests Actions)"]
+    end
+
+    %% =========================
+    %% APPLICATION LAYER
+    %% =========================
+    subgraph APP["Step 4: Application Layer"]
+        API["FastAPI Backend"]
+        UI["Streamlit Dashboard & AI Assistant"]
+    end
+
+    %% =========================
+    %% DATA FLOW
+    %% =========================
+    EDC --> LDR
+    SAE --> LDR
+    LAB --> LDR
+    DQ --> LDR
+    COD --> LDR
+    OPS --> LDR
+
+    LDR --> MAP
+    MAP --> CLN
+    CLN --> RAW
+
+    RAW --> ROUTE
+    ROUTE --> RULES
+    RULES --> ISSUES
+
+    ISSUES --> INSIGHT
+    INSIGHT --> RECOMMEND
+
+    INSIGHT --> API
+    RECOMMEND --> API
+    API --> UI
+```
 
 ## Overview
 
-TrailFlow is a Python-based data ingestion and processing pipeline designed to load, organize, and process structured datasets in a clean and reproducible way.  
-The project follows a modular architecture, making it easy to extend, test, and integrate into larger data or machine learning workflows.
+TrailFlow is an **agentic AI–driven clinical trial intelligence platform** that ingests heterogeneous clinical trial data, detects issues using deterministic logic, and applies AI reasoning to generate insights, recommendations, and summaries.
 
-TrailFlow focuses on clarity, maintainability, and scalability, making it suitable for experimentation, research workflows, and early-stage production pipelines.
+The system is designed to mirror real-world clinical operations, where **data quality, safety, and operational risks** must be detected early and explained clearly.
 
-## Key Features
+---
 
-- Modular data ingestion layer for clean separation of concerns  
-- Centralized pipeline execution through a single entry point  
-- Clean and organized project structure  
-- Support for structured raw data storage  
-- Testable ingestion components  
-- Lightweight and easy to extend for new pipeline stages  
+## Problem Statement
+
+Clinical trial data is fragmented across multiple siloed systems, including:
+
+- EDC metrics  
+- Safety and SAE reports  
+- Laboratory outputs  
+- Operational and visit trackers  
+
+Manual monitoring of these systems is **reactive, slow, and error-prone**, increasing the risk of delayed decisions, audit findings, and operational inefficiencies.
+
+TrailFlow addresses this by unifying data sources, automatically detecting issues, clearly explaining their impact, and recommending corrective actions.
+
+---
+
+## Key Capabilities
+
+- **Deterministic data ingestion and cleaning**
+- **Domain-aware issue detection**
+  - Data quality
+  - Safety
+  - Operations
+  - Medical coding
+- **Agentic AI reasoning for**
+  - Pattern explanation
+  - Risk interpretation
+  - Actionable recommendations
+  - Study-level summaries
+- **Clear separation between**
+  - Rule-based logic
+  - AI-driven reasoning
+- **Extensible and production-aligned architecture**
 
 ## Project Structure
 
@@ -66,19 +166,38 @@ Run the pipeline from the project root:
 ```bash
 python run_pipeline.py
 ```
-This script orchestrates the complete workflow and serves as the central execution point for the project.
 
+Run the full AI pipeline for the project:
+```bash
+python run_ai_pipeline.py
+```
+
+This script orchestrates the complete workflow and serves as the central execution point for the project.
 ## Design Principles
 
-- Simplicity over unnecessary abstraction  
-- Clear separation between data, logic, and execution  
-- Easy testing and debugging  
-- Designed for future extensibility  
+- Deterministic logic before AI reasoning  
+- No black-box decisions  
+- Fully traceable issue origins  
+- Modular and testable components  
+- Built for real-world clinical workflows  
+
+---
+
+## Current Status
+
+- Ingestion pipeline implemented  
+- Issue detection engine operational  
+- Agentic AI layer integrated  
+- End-to-end execution supported  
+
+---
 
 ## Future Enhancements
 
-- Add schema validation and data quality checks  
-- Introduce logging and monitoring  
-- Support configuration-driven pipelines  
-- Extend with transformation and analytics stages  
+- Configuration-driven rules  
+- Continuous ingestion support  
+- Monitoring and alerting  
+- Cross-study intelligence  
+- Cloud-native deployment  
+
  
