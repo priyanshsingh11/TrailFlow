@@ -42,14 +42,6 @@ flowchart TB
     end
 
     %% =========================
-    %% APPLICATION LAYER
-    %% =========================
-    subgraph APP["Step 4: Application Layer"]
-        API["FastAPI Backend"]
-        UI["Streamlit Dashboard & AI Assistant"]
-    end
-
-    %% =========================
     %% DATA FLOW
     %% =========================
     EDC --> LDR
@@ -70,9 +62,6 @@ flowchart TB
     ISSUES --> INSIGHT
     INSIGHT --> RECOMMEND
 
-    INSIGHT --> API
-    RECOMMEND --> API
-    API --> UI
 ```
 
 ## Overview
