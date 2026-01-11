@@ -8,6 +8,13 @@ load_dotenv()
 
 
 class InsightAgent:
+    """
+    Insight Agent:
+    - Operates during ongoing clinical trials (pre-submission)
+    - Explains detected issue patterns
+    - Does NOT make decisions or recommendations
+    """
+
     def __init__(self, model_name="llama-3.1-8b-instant"):
         self.llm = ChatGroq(
             model=model_name,
@@ -18,12 +25,23 @@ class InsightAgent:
         self.prompt = ChatPromptTemplate.from_template("""
 You are a clinical trial data expert.
 
-Summarize the following detected issues:
-- Key problem patterns
-- Affected domains
-- Potential risks
+This system operates during ongoing clinical trials,
+before regulatory submission and drug approval.
 
-Issues:
+Your role is to EXPLAIN detected issues for clinical trial teams.
+You do NOT make medical, operational, or regulatory decisions.
+You do NOT suggest actions or recommendations.
+
+Based only on the issues provided below, summarize:
+
+- Key problem patterns
+- Affected clinical domains
+- Potential risks to trial execution or data integrity
+
+Keep the explanation concise, factual, and high-level.
+Do not introduce information not present in the issues.
+
+Detected Issues Summary:
 {issues}
 """)
 
