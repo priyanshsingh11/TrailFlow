@@ -77,19 +77,44 @@ flowchart TB
 
 ## Overview
 
-TrailFlow is a Python-based data ingestion and processing pipeline designed to load, organize, and process structured datasets in a clean and reproducible way.  
-The project follows a modular architecture, making it easy to extend, test, and integrate into larger data or machine learning workflows.
+TrailFlow is an **agentic AI–driven clinical trial intelligence platform** that ingests heterogeneous clinical trial data, detects issues using deterministic logic, and applies AI reasoning to generate insights, recommendations, and summaries.
 
-TrailFlow focuses on clarity, maintainability, and scalability, making it suitable for experimentation, research workflows, and early-stage production pipelines.
+The system is designed to mirror real-world clinical operations, where **data quality, safety, and operational risks** must be detected early and explained clearly.
 
-## Key Features
+---
 
-- Modular data ingestion layer for clean separation of concerns  
-- Centralized pipeline execution through a single entry point  
-- Clean and organized project structure  
-- Support for structured raw data storage  
-- Testable ingestion components  
-- Lightweight and easy to extend for new pipeline stages  
+## Problem Statement
+
+Clinical trial data is fragmented across multiple siloed systems, including:
+
+- EDC metrics  
+- Safety and SAE reports  
+- Laboratory outputs  
+- Operational and visit trackers  
+
+Manual monitoring of these systems is **reactive, slow, and error-prone**, increasing the risk of delayed decisions, audit findings, and operational inefficiencies.
+
+TrailFlow addresses this by unifying data sources, automatically detecting issues, clearly explaining their impact, and recommending corrective actions.
+
+---
+
+## Key Capabilities
+
+- **Deterministic data ingestion and cleaning**
+- **Domain-aware issue detection**
+  - Data quality
+  - Safety
+  - Operations
+  - Medical coding
+- **Agentic AI reasoning for**
+  - Pattern explanation
+  - Risk interpretation
+  - Actionable recommendations
+  - Study-level summaries
+- **Clear separation between**
+  - Rule-based logic
+  - AI-driven reasoning
+- **Extensible and production-aligned architecture**
 
 ## Project Structure
 
