@@ -191,7 +191,7 @@ This script orchestrates the complete workflow and serves as the central executi
 - No black-box decisions  
 - Fully traceable issue origins  
 - Modular and testable components  
-- Built for real-world clinical workflows  
+- Built for real-world clinical workflows
 
 ---
 
